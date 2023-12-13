@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Aadhar OTP page</title>
+  <style type="text/css">
+    .wrapper {
+  width: 400px;
+  margin: 40px auto;
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0px 10px 40px 0px rgba(47,47,47,.1);
+}
+h1 {
+  text-align: center;
+  font-size: 48px;
+  color: #232c3d;
+}
+input[type="text"]{
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  background: none;
+  width: 274px;
+  color: black;
+}
+.error-message{
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.controls {
+  width: 100px;
+  margin: 15px auto;
+  display: inline;
+}
+    .btn {
+        padding: 10px 20px;
+        font-family: "Poppins", sans-serif;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 5px;
+        text-decoration: none;
+      }
+      #Success{
+        background-color: #0093f7;
+        margin-left:230px ;
+
+      }
+      #Failure{
+        background-color: #FF0000;
+        margin-left:-250px;
+
+      }
+
+  </style>
+</head>
+<body>
+  <h1>Aadhar OTP page</h1>
+  <div class="wrapper">
+    <form method="POST">
+    <div class="input-container">
+      <input id="aadhar_input" type="text" size="50" placeholder="Aadhar No">
+      <div class="error-message" id="aadhar_error"></div>
+    </div>
+    <div class="input-container">
+      <input id="code_input" type="text" size="50" placeholder="Code">
+      <div class="error-message" id="code_error"></div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="Success">Success</button>
+      <button class="btn" id="Failure">Failure</button>
+    </div>
+  </form>
+  </div>
+  
+  <script>
+    const successButton = document.getElementById("Success");
+    const failureButton = document.getElementById("Failure");
+
+    successButton.addEventListener('click', () => {
+      const aadharInput = document.getElementById("aadhar_input");
+      const codeInput = document.getElementById("code_input");
+      const aadharError = document.getElementById("aadhar_error");
+      const codeError = document.getElementById("code_error");
+
+      let isValid = true;
+
+      if (aadharInput.value.trim() === '') {
+        aadharError.textContent = 'Please fill in the Aadhar No field';
+        isValid = false;
+      } else {
+        aadharError.textContent = '';
+      }
+
+      if (codeInput.value.trim() === '') {
+        codeError.textContent = 'Please fill in the Code field';
+        isValid = false;
+      } else {
+        codeError.textContent = '';
+      }
+
+      if (isValid) {
+        window.location.href = 'https://www.getonecard.app/?transid=ekyc_2660305401631183557631&errorMessage=null&errorCode=null';
+      }
+    });
+    failureButton.addEventListener('click', () => {
+      window.location.href = 'https://www.getonecard.app/?transid=0&errorMessage=Ekyc+failed+with+error+code+K-100&errorCode=K-100';
+
+    });
+  </script>
+</body>
+</html>
